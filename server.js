@@ -24,7 +24,7 @@ const CORS_ORIGIN = process.env.CORS_ORIGIN || 'http://localhost:3000';
 
 console.log('🔧 Configuration:');
 console.log(`   Environment: ${NODE_ENV}`);
-console.log(`   Port: ${PORT}`);
+// console.log(`   Port: ${PORT}`);
 console.log(`   MongoDB: ${MONGODB_URI.split('@')[1] || MONGODB_URI}`);
 console.log(`   CORS Origin: ${CORS_ORIGIN}`);
 console.log(`   JWT Secret: ${JWT_SECRET.substring(0, 10)}...`);
