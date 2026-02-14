@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken');
 const bookingschema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'user',
     required: true
   },
   userName: String,
@@ -19,7 +19,7 @@ const bookingschema = new mongoose.Schema({
   
   providerId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'user',
     required: true
   },
   providerName: String,
@@ -70,7 +70,7 @@ const authMiddleware = async (req, res, next) => {
     }
     
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'change-this-secret-key');
-    const User = mongoose.model('User');
+    const User = mongoose.model('user');
     const user = await User.findById(decoded.userId);
     
     if (!user) {
