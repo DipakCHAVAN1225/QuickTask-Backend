@@ -1,7 +1,3 @@
-
-
-
-// backend/server.js
 require("dotenv").config();
 
 const express = require("express");
@@ -15,9 +11,7 @@ const paymentRoutes = require("./routes/paymentRoutes");
 
 const app = express();
 
-/* =========================
-   MIDDLEWARE
-========================= */
+/* ===== Middleware ===== */
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
 
@@ -28,9 +22,7 @@ app.use(
   })
 );
 
-/* =========================
-   DATABASE
-========================= */
+/* ===== Database ===== */
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("✅ MongoDB connected"))
@@ -39,9 +31,7 @@ mongoose
     process.exit(1);
   });
 
-/* =========================
-   ROUTES
-========================= */
+/* ===== Routes ===== */
 app.use("/api/auth", authRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/providers", providerRoutes);
@@ -51,9 +41,7 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
-/* =========================
-   ERROR HANDLER
-========================= */
+/* ===== Error Handler ===== */
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ error: "Internal Server Error" });
