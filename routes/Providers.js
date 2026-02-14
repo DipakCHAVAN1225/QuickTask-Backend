@@ -5,7 +5,7 @@ const router = express.Router();
 
 const auth = require("../middleware/Auth");
 const User = require("../models/user");
-const Payment = require("../models/Payment");
+const Payment = require("../models/payment");
 
 /* ========================================================
    GET /api/providers
