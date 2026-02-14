@@ -7,59 +7,6 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
-// ============ BOOKING SCHEMA ============
-const bookingschema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
-    required: true
-  },
-  userName: String,
-  userEmail: String,
-  
-  providerId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
-    required: true
-  },
-  providerName: String,
-  providerEmail: String,
-  
-  serviceType: {
-    type: String,
-    required: true
-  },
-  scheduledTime: {
-    type: Date,
-    required: true
-  },
-  location: String,
-  description: String,
-  amount: {
-    type: Number,
-    required: true
-  },
-  status: {
-    type: String,
-    enum: ['pending', 'accepted', 'completed', 'cancelled', 'rejected'],
-    default: 'pending'
-  },
-  rating: {
-    type: Number,
-    min: 1,
-    max: 5
-  },
-  review: String,
-  
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  acceptedAt: Date,
-  completedAt: Date
-});
-
-const Booking = mongoose.model('Booking', bookingschema);
 
 // ============ AUTH MIDDLEWARE ============
 const authMiddleware = async (req, res, next) => {
