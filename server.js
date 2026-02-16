@@ -8,7 +8,7 @@ const authRoutes = require("./routes/auth");
 const bookingRoutes = require("./routes/Bookings");
 const providerRoutes = require("./routes/Providers");
 const paymentRoutes = require("./routes/paymentRoutes");
-
+const ConnectDB = require("./config/db");
 const app = express();
 
 /* ===== Middleware ===== */
@@ -23,13 +23,8 @@ app.use(
 );
 
 /* ===== Database ===== */
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => {
-    console.error("❌ MongoDB error:", err.message);
-    process.exit(1);
-  });
+ConnectDB();
+
 
 /* ===== Routes ===== */
 app.use("/api/auth", authRoutes);
